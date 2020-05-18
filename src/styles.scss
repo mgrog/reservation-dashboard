@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  background-color: #f7fbfb;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-light {
+  color: #f8f9fa;
+}
+
+.mat-typography h1 {
+  font-size: 4rem;
+  line-height: 1.6em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+/* material style overrides must be in global styles */
+.selector-row {
+  .mat-button {
+    min-width: unset;
+    width: 100px;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  html {
+    font-size: 10px !important;
+  }
+}

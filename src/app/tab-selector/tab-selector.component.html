@@ -1,0 +1,22 @@
+<div fxLayout="row" fxLayoutAlign="start end" fx class="selector-row">
+  <div class="tab">
+    <button
+      mat-button
+      [ngClass]="{ active: tabSelected === 1 }"
+      (click)="select(1)"
+    >
+      <label>Info</label>
+    </button>
+    <hr [ngClass]="{ selected: tabSelected === 1 }" />
+  </div>
+  <div class="tab">
+    <button
+      mat-button
+      [ngClass]="{ active: tabSelected === 2 }"
+      (click)="select(2)"
+    >
+      <label>Timeslot</label>
+    </button>
+    <hr [ngClass]="{ selected: tabSelected === 2 }" />
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div [formGroup]="parentForm">
+  <mat-card-title>Vehicle Info</mat-card-title>
+  <form fxLayout="column" formGroupName="vehicleForm">
+    <mat-card-subtitle>Description</mat-card-subtitle>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <mat-form-field fxFlex="30" appearance="fill">
+        <mat-label>Make</mat-label>
+        <mat-select [formControlName]="'make'" required>
+          <mat-option *ngFor="let make of vehicleMakes" [value]="make">
+            {{ make }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="30" appearance="fill">
+        <mat-label>Model</mat-label>
+        <input
+          [formControlName]="'model'"
+          matInput
+          placeholder="Model"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="30" appearance="fill">
+        <mat-label>Color</mat-label>
+        <mat-select [formControlName]="'color'" required>
+          <mat-option *ngFor="let color of colors" [value]="color">
+            {{ color }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <mat-form-field fxFlex="48" appearance="fill">
+        <mat-label>Plate Number</mat-label>
+        <input
+          [formControlName]="'plateNumber'"
+          matInput
+          placeholder="Plate #"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="48" appearance="fill">
+        <mat-label>Registered State</mat-label>
+        <mat-select
+          [formControlName]="'registeredState'"
+          [(value)]="stateSelected"
+          required
+        >
+          <mat-select-trigger>
+            {{ stateSelected?.substring(5) }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let state of usStates" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-card-subtitle>Additional</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>VIN</mat-label>
+      <input [formControlName]="'vin'" matInput placeholder="VIN" />
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <mat-form-field fxFlex="30" appearance="fill">
+        <mat-label>Transmission</mat-label>
+        <mat-select [formControlName]="'transmission'">
+          <mat-option
+            *ngFor="let drive of ['Automatic', 'Manual']"
+            [value]="drive"
+          >
+            {{ drive }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="66" appearance="fill">
+        <mat-label>Special Customer Instructions</mat-label>
+        <input [formControlName]="'instructions'" matInput />
+      </mat-form-field>
+    </div>
+    <mat-card-subtitle>Pickup Time</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>Pickup Time</mat-label>
+      <mat-select [formControlName]="'pickupTime'" required>
+        <mat-option
+          *ngIf="!availableTimes?.length"
+          (click)="onCheckAvailability()"
+          >(check for availability)
+        </mat-option>
+        <mat-option *ngFor="let slot of availableTimes" [value]="slot">
+          {{ slot.day }} - {{ slot.time }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>

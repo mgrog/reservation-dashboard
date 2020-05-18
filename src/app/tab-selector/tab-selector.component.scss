@@ -1,0 +1,31 @@
+.selector-row {
+  height: 50px;
+  padding-bottom: 20px;
+  margin-left: 5.5%;
+}
+
+.tab {
+  padding-bottom: 5px;
+}
+
+.label {
+  margin: 0;
+}
+
+hr {
+  background-color: orangered;
+  height: 2px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.selected {
+  transition: opacity linear 0.3s;
+  opacity: 1;
+}

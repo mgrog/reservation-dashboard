@@ -1,0 +1,57 @@
+<mat-card
+  class="info-card"
+  @parent
+  [formGroup]="parentForm"
+  (ngSubmit)="onSubmit()"
+>
+  <app-tab-selector
+    [tabSelected]="tabSelected"
+    (selectTab)="tabSelected = $event"
+  ></app-tab-selector>
+  <mat-divider style="margin-top: -27px;"></mat-divider>
+  <form [formGroup]="parentForm">
+    <div
+      class="form-section responsive"
+      @dissolve
+      *ngIf="tabSelected === 1"
+      fxLayout="row"
+      fxLayoutAlign="space-around"
+      fxLayout.lt-md="column"
+      fxFlexFill
+    >
+      <app-customer-form
+        [parentForm]="parentForm"
+        fxFlex="48"
+      ></app-customer-form>
+      <app-vehicle-form
+        [parentForm]="parentForm"
+        [availableTimes]="availableTimes"
+        (goToTab)="onCheckAvailability($event)"
+        fxFlex="48"
+      ></app-vehicle-form>
+    </div>
+    <div *ngIf="tabSelected === 2" @dissolve>
+      <app-timeslot-selector
+        (availableSlots)="setAvailableTimes($event)"
+        (reserveSlot)="onReserve($event)"
+      ></app-timeslot-selector>
+    </div>
+    <div
+      *ngIf="tabSelected === 1"
+      @dissolve
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
+    >
+      <div fxFlex="48" fxLayoutAlign="end center">
+        <button color="primary" type="submit" mat-raised-button>
+          Submit
+        </button>
+      </div>
+      <div fxFlex="48" fxLayoutAlign="start center">
+        <button type="button" (click)="onCancel()" mat-raised-button>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>

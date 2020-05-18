@@ -1,0 +1,93 @@
+<div class="info-card" [formGroup]="parentForm">
+  <mat-card-title>Customer Info</mat-card-title>
+  <form fxLayout="column" formGroupName="customerForm">
+    <mat-card-subtitle>ID</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input
+        [formControlName]="'firstName'"
+        matInput
+        placeholder="Customer First Name"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input
+        [formControlName]="'lastName'"
+        matInput
+        placeholder="Customer Last Name"
+        required
+      />
+    </mat-form-field>
+    <mat-card-subtitle>Address</mat-card-subtitle>
+    <form fxLayout="column" formGroupName="address">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="70" appearance="fill">
+          <mat-label>Street</mat-label>
+          <input
+            [formControlName]="'street'"
+            matInput
+            placeholder="Street Name"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="25" appearance="fill">
+          <mat-label>State</mat-label>
+          <mat-select
+            [formControlName]="'state'"
+            [(value)]="stateSelected"
+            required
+          >
+            <mat-select-trigger>
+              {{ stateSelected?.substring(0, 2) }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let state of usStates" [value]="state">
+              {{ state }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="70" appearance="fill">
+          <mat-label>City</mat-label>
+          <input
+            [formControlName]="'city'"
+            matInput
+            placeholder="City"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="25" appearance="fill">
+          <mat-label>Zip Code</mat-label>
+          <input
+            [formControlName]="'zip'"
+            matInput
+            placeholder="Zip Code"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </form>
+    <mat-card-subtitle>Contact</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        [formControlName]="'email'"
+        matInput
+        placeholder="address@example.com"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Phone #</mat-label>
+      <input
+        [formControlName]="'phone'"
+        matInput
+        appPhoneMask
+        placeholder="###-###-####"
+        required
+      />
+    </mat-form-field>
+  </form>
+</div>

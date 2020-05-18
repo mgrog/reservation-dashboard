@@ -1,0 +1,42 @@
+<div fxLayout="column" class="responsive" fxLayoutAlign="center center">
+  <div class="container-grid">
+    <div
+      class="header day-header"
+      *ngFor="let day of days"
+      [ngStyle]="{ 'grid-column-start': incrementColPos() }"
+    >
+      <span>{{ day }}</span>
+    </div>
+    <div class="time-header">
+      <span class="time-label first">9:00am</span>
+      <span *ngFor="let time of times.slice(1)" class="time-label">
+        {{ time }}
+      </span>
+      <span class="time-label last">5:00pm</span>
+    </div>
+    <div class="spacer"></div>
+    <div
+      class="timeslot-container"
+      [ngClass]="
+        !slot.isAvailable
+          ? slot.customer === 'pending'
+            ? 'pending'
+            : 'taken'
+          : 'free'
+      "
+      *ngFor="let slot of timeSlots"
+      (click)="reserve(slot)"
+    >
+      <label
+        class="text-light"
+        *ngIf="!slot.isAvailable && slot.customer !== 'pending'"
+      >
+        Reserved for<br />
+        {{ slot.customer }}
+      </label>
+      <label class="text-light" *ngIf="slot.customer === 'pending'">
+        Reservation Pending
+      </label>
+    </div>
+  </div>
+</div>
