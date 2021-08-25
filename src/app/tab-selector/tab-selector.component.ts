@@ -13,7 +13,7 @@ export class TabSelectorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  select(selected: number) {
+  select(selected: number): void {
     this.tabSelected = selected;
     this.selectTab.emit(selected);
   }
