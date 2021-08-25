@@ -55,14 +55,14 @@ export class TimeslotSelectorComponent implements OnInit {
     this.updateAvailableTimes();
   }
 
-  incrementColPos() {
+  incrementColPos(): number {
     if (this.colPos > 6) {
       this.colPos = 2;
     }
     return this.colPos++;
   }
 
-  reserve(slot: TimeSlot) {
+  reserve(slot: TimeSlot): void {
     if (!slot.isAvailable) {
       return;
     }
@@ -77,7 +77,7 @@ export class TimeslotSelectorComponent implements OnInit {
     this.updateAvailableTimes();
   }
 
-  updateAvailableTimes() {
+  updateAvailableTimes(): void {
     const available = this.timeSlots.filter(
       (slot) => slot.isAvailable || slot.customer === 'pending'
     );
