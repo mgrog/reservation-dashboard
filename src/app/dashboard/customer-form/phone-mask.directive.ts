@@ -8,16 +8,16 @@ export class PhoneMaskDirective {
   constructor(public ngControl: NgControl) {}
 
   @HostListener('ngModelChange', ['$event'])
-  onModelChange(event) {
+  onModelChange(event: string) {
     this.onInputChange(event, false);
   }
 
   @HostListener('keydown.backspace', ['$event'])
-  keydownBackspace(event) {
+  keydownBackspace(event: { target: HTMLInputElement}) {
     this.onInputChange(event.target.value, true);
   }
 
-  onInputChange(event, backspace) {
+  onInputChange(event: string, backspace: boolean) {
     if (!event) {
       return;
     }

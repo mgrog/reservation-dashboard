@@ -55,13 +55,13 @@ export class DashboardComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  setAvailableTimes(times: TimeSlot[]) {
+  setAvailableTimes(times: TimeSlot[]): void {
     this.availableTimes = times;
   }
 
   ngOnInit(): void {}
 
-  get reservation() {
+  get reservation(): TimeSlot {
     return this.parentForm.get('vehicleForm').get('pickupTime').value;
   }
 
@@ -69,22 +69,22 @@ export class DashboardComponent implements OnInit {
     this.parentForm.get('vehicleForm').get('pickupTime').setValue(time);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.parentForm.markAllAsTouched();
     console.warn('to submit', this.parentForm.value);
   }
 
-  onCancel() {
+  onCancel(): void {
     this.parentForm.reset();
     this.parentForm.markAsPristine();
     this.parentForm.markAsUntouched();
   }
 
-  onReserve(time: TimeSlot) {
+  onReserve(time: TimeSlot): void {
     this.reservation = time;
   }
 
-  onCheckAvailability(tab: number) {
+  onCheckAvailability(tab: number): void {
     this.tabSelected = tab;
   }
 }
