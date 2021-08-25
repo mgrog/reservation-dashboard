@@ -23,7 +23,7 @@ export class VehicleFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onCheckAvailability() {
+  onCheckAvailability(): void {
     this.goToTab.emit(2);
   }
 }
